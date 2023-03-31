@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animated Waves from SVG</title>
+    <style>
+        path {
+          fill: blue;
+          animation: wave 2s linear infinite alternate;
+        }
+      
+        @keyframes wave {
+          from {
+            d: path("M 0 50 C 150 0 350 100 500 50 V 100 H 0 V 50 Z");
+          }
+          to {
+            d: path("M 0 50 C 150 100 350 0 500 50 V 100 H 0 V 50 Z");
+          }
+        }
+        img {
+            position: absolute;
+            z-index: 1;
+            transform: rotate(0deg);
+            animation: rock 2s ease-in-out infinite alternate;
+            margin-left: 250px;
+
+        }
+
+        svg {
+            position: absolute;
+            z-index: 0;
+            margin-top: 515px;
+    
+        }
+
+        @keyframes rock {
+            from {
+            transform: rotate(10deg);
+            }
+            to {
+            transform: rotate(-10deg);
+            }
+        }
+      </style>
+      
+  </head>
+  <body>
+    <div>
+      <figure>
+        <img src="boat_only.svg" alt="MySail">
+        <svg viewBox="0 0 500 100">
+        <path d="M 0 50 C 150 0 350 100 500 50 V 100 H 0 V 50 Z" />
+      </svg>
+    </figure>
+    </div>
+  </body>
+</html>
