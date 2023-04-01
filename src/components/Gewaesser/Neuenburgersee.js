@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import DataNeuenburgersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/lake_components/DataNeuenburgersee';
-import MapComponent from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/MapComponent';
-import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
+import DataNeuenburgersee from '../lake_components/DataNeuenburgersee';
+import MapComponent from '../MapComponent';
+import OLmap from '../OLmap';
 
 function Page2() {
   const center = [2554874.0445, 1194485.5261];
