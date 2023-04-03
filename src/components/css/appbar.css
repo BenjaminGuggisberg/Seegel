@@ -1,0 +1,17 @@
+.userbutton {
+    width: 85px;
+    height: 45px;
+    margin-top: 9px; 
+    margin-bottom: 9px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-style: none;
+    color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .userbutton:hover {
+    background-color: darkgrey;
+    color: white;
+  }
+  

@@ -8,3 +8,23 @@
                             > Star-Menu Button linked to Footer
                             > User Menu AND Login Formular
                             > onMapClick to show data as Popup Window
+
+03.04.2023                  To Do:
+                            > Menu Interface Zusammenfassung von Daten (gut möglich oder nicht im jeweiligen Gewässer)
+                            > Geographische Auswahl der Seen als Objekte mit Label anstatt Buttons
+                            > Format Smartphone/Web
+                            > User Ausrichtung ZENTRAL
+                            Coaching GUI
+ 
+Verwendungszweck: Planung
+Nutzerpfade GUI überlegen
+In welcher Reihenfolge anschauen?  Web App nach Ablauf aufbauen
+Nutzerperson: welche Bedürfnisse? Guter Segler? Mobil in der ganzen Schweiz? Welche Darstellungen sind optimal für den Benutzer?
+Welche Daten brauchen wir?
+Auf welcher Plattform (Browser/Smartphone) anbieten?  spezifisches Design dafür
+ 
+Konkret:
+Wind als erstes sehen
+ 
+Ideen:
+Schon als erstes mit Ampelsystem sehen, welche Seen überhaupt zum segeln in Frage kommen

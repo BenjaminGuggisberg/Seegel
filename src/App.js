@@ -4,13 +4,14 @@ import Page2 from './components/Gewaesser/Neuenburgersee';
 import Page3 from './components/Gewaesser/Thunersee';
 import Page4 from './components/Gewaesser/Brienzersee';
 import { useEffect } from 'react';
-import Footer from './components/Footer';
 import Appbar from './components/Appbar';
+import '../src/components/css/seegel.css'
+// import LoginComponent from './components/LoginComponent';
 
 function App() {
   const [nameTag, setNameTag] = useState('');
   const [currentPage, setCurrentPage] = useState('menu');
-  
+
   const setname = () => {
     if (currentPage === 'page1'){
       setNameTag('Bielersee')
@@ -35,8 +36,12 @@ function App() {
   };
   console.log('nameTag: ', nameTag)
 
+  
   return (
   <>
+  {/* <div>
+    <LoginComponent />
+  </div> */}
   <div>
   <Appbar nameTag={nameTag}/>
     <div>
@@ -55,13 +60,9 @@ function App() {
       {currentPage === 'page3' && <Page3 onClick={handleClick} />}
       {currentPage === 'page4' && <Page4 onClick={handleClick} />}
       {/* {currentPage === 'user' && <User onClick={handleClick} />} */}
-      {currentPage !== 'menu' && (<>
-          <button onClick={() => handleClick('menu')}>Zurück zum Menü</button><br/><br/><br/>
-      </>
-      )}
     </div>
   </div><br/><br/>
-  <Footer />
+  {currentPage === 'menu' && <footer id='menufooter'><p id='p1'>Copyright © 2023 | Sara Hauser | Benjamin Guggisberg</p><p id='p2'>All rights reserved</p></footer>}
   </>
   );
   }

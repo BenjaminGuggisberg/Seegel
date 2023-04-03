@@ -8,9 +8,9 @@ class OLmap extends Component {
   componentDidMount() {
     const { center, zoom } = this.props;
     const mapContainer = document.getElementById('map');
-    mapContainer.style.width = '90%';
+    mapContainer.style.width = '80%';
     mapContainer.style.margin = 'auto';
-    mapContainer.style.height = '500px';
+    mapContainer.style.height = '350px';
 
 
     var swisstopoWMTSLayer = 'ch.swisstopo.pixelkarte-farbe';
@@ -43,7 +43,9 @@ class OLmap extends Component {
     			units: 'm'
     		})
       })
-    });
+    }); 
+
+    map.on('click', this.props.onClick);
   }
 
   render() {

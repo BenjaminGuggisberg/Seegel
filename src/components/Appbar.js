@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import User from "./User";
+import './css/appbar.css'
 
 function Appbar({nameTag}) {
 
@@ -35,7 +36,7 @@ function Appbar({nameTag}) {
           style={{ height: 74 }}
         />
         <h2>{nameTag}</h2>
-        <button onClick={() => handlePageChange("user")}>User</button>
+        <button className='userbutton' onClick={() => handlePageChange("user")}>User</button>
       </div>
       {currentPage === "user" && <User onClick={handlePageChange} />}
     </>

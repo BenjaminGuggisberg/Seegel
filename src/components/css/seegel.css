@@ -1,0 +1,22 @@
+#menufooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  width: 99%;
+  background-color: lightblue;
+  opacity: 100%;
+  color: black;
+  display: flex;
+  padding: 0px;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+#p1 {
+  padding-left: 30px;
+}
+#p2 {
+  padding-right: 30px;
+}
