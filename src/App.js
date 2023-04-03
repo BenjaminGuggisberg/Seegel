@@ -46,7 +46,7 @@ function App() {
   <Appbar nameTag={nameTag}/>
     <div>
     {currentPage === 'menu' && (
-        <div>
+        <div id='list'>
         <ul id='ul'>
           <li className='li'><button style={{marginTop:'70px'}} onClick={() => handleClick('page1')}>Bielersee</button></li>
           <li className='li'><button style={{marginTop: '10px'}} onClick={() => handleClick('page2')}>Neuenburgersee</button></li>

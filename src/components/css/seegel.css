@@ -20,3 +20,22 @@
 #p2 {
   padding-right: 30px;
 }
+
+#list {
+  display: flex;
+  justify-content: center;
+}
+#ul {
+  list-style: none;
+}
+.li button {
+  width: 250px;
+  height: 65px;
+  border-style: none;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.li button:hover {
+  background-color: darkgrey;
+  color: white;
+}

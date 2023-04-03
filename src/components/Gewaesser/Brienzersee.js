@@ -5,7 +5,6 @@ import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/tem
 import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_brienzersee';
 
-
 function Page4(props) {
   const center = [2640648.9647, 1175226.5319];
   const zoom =13;

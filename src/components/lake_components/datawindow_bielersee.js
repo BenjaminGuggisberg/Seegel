@@ -13,7 +13,7 @@ function DataWindow(props) {
   };
 
   return (
-    <div style={{background: 'lightgrey', height: '65px', position: 'relative', width: '80%', margin: 'auto'}}>
+    <div style={{background: 'lightgrey', height: '65px', position: 'relative', width: '70%', margin: 'auto'}}>
       <h2>Data Window</h2>
       <p>This is the data window content.</p>
       <button onClick={props.onClose} style={closeButtonStyle}>X</button>

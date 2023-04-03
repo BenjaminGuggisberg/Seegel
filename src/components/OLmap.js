@@ -8,7 +8,7 @@ class OLmap extends Component {
   componentDidMount() {
     const { center, zoom } = this.props;
     const mapContainer = document.getElementById('map');
-    mapContainer.style.width = '80%';
+    mapContainer.style.width = '70%';
     mapContainer.style.margin = 'auto';
     mapContainer.style.height = '350px';
 

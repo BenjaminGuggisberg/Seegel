@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DataNeuenburgersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/lake_components/DataNeuenburgersee';
 import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
 import '../css/Footer.css'
-import DataWindow from '../lake_components/DataNeuenburgersee'
+import DataWindow from '../lake_components/datawindow_neuenb'
 
 function Page2(props) {
   const center = [2554874.0445, 1194485.5261];
