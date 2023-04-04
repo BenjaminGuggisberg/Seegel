@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 // import MapComponent from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/MapComponent';
-import DataBielersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/lake_components/DataBielersee';
-import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
+import DataBielersee from '../lake_components/DataBielersee';
+import OLmap from '../OLmap';
 import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_bielersee';
 
