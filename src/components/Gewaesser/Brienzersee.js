@@ -40,7 +40,7 @@ function Page4(props) {
       <footer>
         <button onClick={() => setShowMap(true)}>Map</button>
         <button onClick={() => setShowMap(false)}>Data</button>
-        <button onClick={() => props.onClick('menu')}>See</button>
+        <button onClick={() => props.onClick('menu')}>Hauptmenü</button>
       </footer>
       <br/><br/>
     </div>

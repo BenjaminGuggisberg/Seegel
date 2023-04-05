@@ -1,9 +1,9 @@
 import React from "react";
 
-function User() {
+function User({username}) {
 
     return <div>
-        <p>lorem ipsum</p>
+        Username: {username}
     </div>
 
 };

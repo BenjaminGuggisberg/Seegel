@@ -3,7 +3,7 @@ import { useState } from "react";
 import User from "./User";
 import './css/appbar.css'
 
-function Appbar({nameTag}) {
+function Appbar(props) {
 
     const [currentPage, setCurrentPage] = useState("menu");
 
@@ -35,10 +35,10 @@ function Appbar({nameTag}) {
           alt="Segelschiff-Icon"
           style={{ height: 74 }}
         />
-        <h2>{nameTag}</h2>
+        <h2>{props.nameTag}</h2>
         <button className='userbutton' onClick={() => handlePageChange("user")}>User</button>
       </div>
-      {currentPage === "user" && <User onClick={handlePageChange} />}
+      {currentPage === "user" && <User onClick={handlePageChange} username={props.username}/>}
     </>
   );
 }
