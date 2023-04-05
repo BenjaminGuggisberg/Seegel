@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import DataNeuenburgersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/lake_components/DataNeuenburgersee';
-import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
+import DataNeuenburgersee from '../lake_components/DataNeuenburgersee';
+import OLmap from '../OLmap';
 import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_neuenb'
 
