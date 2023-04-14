@@ -13,12 +13,19 @@ footer {
   justify-content: center;
 }
 
-footer button {
+button[type="footer"] {
   margin-top: 9px; 
   margin-bottom: 9px;
   margin-left: 10px;
   margin-right: 10px;
-  width: 85px;
+  width: 125px;
+  border-style: none;
+  transition: all 0.3s ease-in-out; 
+}
+button[type="logout"] {
+  margin: auto;
+  height: 70%;
+  width: 125px;
   border-style: none;
   transition: all 0.3s ease-in-out;
 }

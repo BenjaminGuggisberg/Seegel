@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 // import MapComponent from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/MapComponent';
-import DataBielersee from '../lake_components/DataBielersee';
-import OLmap from '../OLmap';
+import DataBielersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/lake_components/DataBielersee';
+import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
 import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_bielersee';
 
@@ -22,6 +22,14 @@ function Page1(props) {
     setShowDataWindow(false);
   };
 
+  const MapViewer = () => {
+    setShowMap(true)
+  }
+  const DataViewer = () => {
+    setShowMap(false)
+    setShowDataWindow(false)
+  }
+
 
   return (<>
     <div style={{marginTop: '70px'}}> 
@@ -40,9 +48,9 @@ function Page1(props) {
     </div>
     <br/><br/>    
     <footer>
-      <button onClick={() => setShowMap(true)}>Map</button>
-      <button onClick={() => setShowMap(false)}>Data</button>
-      <button onClick={() => props.onClick('menu')}>Hauptmenü</button>
+      <button type="footer" onClick={MapViewer}>Map</button>
+      <button type="footer" onClick={DataViewer}>Data</button>
+      <button type="footer" onClick={() => props.onClick('menu')}>Main Menu</button>
     </footer>
       </>
   );

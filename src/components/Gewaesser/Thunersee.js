@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import DataThunersee from '../lake_components/DataThunersee';
-import OLmap from '../OLmap';
+import DataThunersee from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components//lake_components/DataThunersee';
+import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
 import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_thunersee'
 
@@ -21,27 +21,35 @@ function Page3(props) {
     setShowDataWindow(false);
   };
 
+  const MapViewer = () => {
+    setShowMap(true)
+  }
+  const DataViewer = () => {
+    setShowMap(false)
+    setShowDataWindow(false)
+  }
+
   return (
-    <div style={{marginTop: '70px'}}>
+    <div style={{ marginTop: '70px' }}>
       <h1>Thunersee</h1>
       <div>
         Hier ist der Inhalt für Thunersee.
-      </div><br/>
+      </div><br />
       <div>
-      {showMap ? <OLmap center={center} zoom={zoom} onClick={handleMapClick}/> : <DataThunersee />}
-    {showDataWindow ? (
-      <DataWindow onClose={handleCloseDataWindow} />
-    ) : (
-      null
-    )}
+        {showMap ? <OLmap center={center} zoom={zoom} onClick={handleMapClick} /> : <DataThunersee />}
+        {showDataWindow ? (
+          <DataWindow onClose={handleCloseDataWindow} />
+        ) : (
+          null
+        )}
       </div>
-      <br/><br/>
+      <br /><br />
       <footer>
-        <button onClick={() => setShowMap(true)}>Map</button>
-        <button onClick={() => setShowMap(false)}>Data</button>
-        <button onClick={() => props.onClick('menu')}>Hauptmenü</button>
+        <button type="footer" onClick={MapViewer}>Map</button>
+        <button type="footer" onClick={DataViewer}>Data</button>
+        <button type="footer" onClick={() => props.onClick('menu')}>Main Menu</button>
       </footer>
-      <br/><br/>
+      <br /><br />
     </div>
   );
 }

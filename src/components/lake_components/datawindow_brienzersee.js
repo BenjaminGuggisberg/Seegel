@@ -1,4 +1,5 @@
 import React from 'react';
+import 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/css/datawindow.css'
 
 function DataWindow(props) {
   const closeButtonStyle = {
@@ -13,7 +14,7 @@ function DataWindow(props) {
   };
 
   return (
-    <div style={{background: 'lightgrey', height: '65px', position: 'relative', width: '70%', margin: 'auto'}}>
+    <div className='datawindow'>
       <h2>Data Window</h2>
       <p>This is the data window content.</p>
       <button onClick={props.onClose} style={closeButtonStyle}>X</button>

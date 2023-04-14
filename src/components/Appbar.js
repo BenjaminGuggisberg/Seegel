@@ -5,14 +5,25 @@ import './css/appbar.css'
 
 function Appbar(props) {
 
-    const [currentPage, setCurrentPage] = useState("menu");
+  // const [userPage, setUserPage] = useState("");
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-        console.log(page);
-    };
+  // const handlePageChange = (page) => {
+  //   setUserPage(page);
+  //   console.log(page);
+  //   window.location.href = "/user";
+  // };
+  const [buttonname, setButtonName] = useState('User')
 
-    
+  const handleButtonClick = () => {
+    props.handleClick('user')
+    if (props.currentPage === 'user') {
+      setButtonName('User')
+    } else {
+      setButtonName('Back')
+    }
+  }
+
+
 
   return (
     <>
@@ -36,11 +47,12 @@ function Appbar(props) {
           style={{ height: 74 }}
         />
         <h2>{props.nameTag}</h2>
-        <button className='userbutton' onClick={() => handlePageChange("user")}>User</button>
+        <button className='userbutton' onClick={handleButtonClick}>{buttonname}</button>
       </div>
-      {currentPage === "user" && <User onClick={handlePageChange} username={props.username}/>}
-    </>
-  );
+      {props.currentPage === "user" &&
+        (<User username={props.username} />)}
+      </>
+  )
 }
 
 export default Appbar;

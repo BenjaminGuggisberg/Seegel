@@ -14,6 +14,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState('menu');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const UsernameChange = (value) => {
     setUsername(value)
@@ -34,7 +35,9 @@ function App() {
     } else if (currentPage === 'page4') {
       setNameTag('Brienzersee')
     } else if (currentPage === 'menu') {
-      setNameTag('Hauptmenü')
+      setNameTag('Main Menu')
+    } else if (currentPage === 'user') {
+      setNameTag('User Settings')
     }
   };
 
@@ -43,10 +46,13 @@ function App() {
   }, [currentPage]);
 
   const handleClick = (page) => {
-    setCurrentPage(page);
-    console.log('page index: ', page)
+    if (currentPage === 'user') {
+      setCurrentPage('menu')
+    } else {
+      setCurrentPage(page)};
+      console.log('page index: ', page)
   };
-  console.log('nameTag: ', nameTag)
+  // console.log('nameTag: ', nameTag)
 
 
   return (
@@ -55,7 +61,7 @@ function App() {
         <div>
           {isLoggedIn ? (<>
             <div>
-              <Appbar nameTag={nameTag} username={username} />
+              <Appbar nameTag={nameTag} handleClick={handleClick} username={username} currentPage={currentPage} onClick={handleClick}/>
               <div>
                 {currentPage === 'menu' && (
                   <div id='list'>
@@ -75,7 +81,6 @@ function App() {
               </div>
             </div><br /><br />
             {currentPage === 'menu' && <footer id='menufooter'><p id='p1'>Copyright © 2023 | Sara Hauser | Benjamin Guggisberg</p><p id='p2'>All rights reserved</p></footer>}
-
           </>
           ) : (
             <Login onLoginSuccess={handleLoginSuccess} onUsername={UsernameChange} />

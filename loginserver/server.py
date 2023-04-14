@@ -49,6 +49,11 @@ class LoginRequestBody(BaseModel):
 class LoginResponse(BaseModel):
     username: str
 
+class RegistrationRequestBody(BaseModel):
+    email: str
+    username: str
+    password: str
+
 # Define the login endpoint
 @app.post("/api/login", response_model=LoginResponse)
 async def login(login_request: LoginRequestBody):
@@ -72,6 +77,31 @@ async def login(login_request: LoginRequestBody):
         if conn:
             # Release the connection back to the database connection pool
             db_pool.putconn(conn)
+
+
+@app.post("/api/register")
+async def register(registration_request: RegistrationRequestBody):
+    email = registration_request.email
+    username = registration_request.username
+    password = registration_request.password
+    # validate input (e.g., check if email is already registered)
+    conn = None
+    try:
+        # Acquire a connection from the database connection pool
+        conn = db_pool.getconn()
+        cur = conn.cursor()
+        query = "INSERT INTO users (email, username, password) VALUES (%s, %s, %s)"
+        cur.execute(query, (email, username, password))
+        conn.commit()
+        return {"message": "User registered successfully"}
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal server error")
+    finally:
+        if conn:
+            # Release the connection back to the database connection pool
+            db_pool.putconn(conn)
+
 
 if __name__ == "__main__":
     # Start the server using Uvicorn

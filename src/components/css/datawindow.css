@@ -1,0 +1,10 @@
+.datawindow {
+    background-color: lightblue;
+    border: 2px solid black;
+    height: 85px;
+    position: relative;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+}

@@ -15,6 +15,16 @@
                             > Format Smartphone/Web
                             > User Ausrichtung ZENTRAL
                             Coaching GUI
+
+14.04.2023                  > Logout? Implementierung (Seiten Refresh?)
+                            >‌ Keine Cookies/Tokens um Login Daten zu speichern + Login Security
+                            >‌ Bugs in Rendering
+                            > ‌Additional User Settings (Bild, Tel. Nr - Security, etc.)
+                            >‌ Backend GeoServer Daten Darstellung
+                            >‌ Gesamt Frame (@Tailwindcss)
+                            
+                            -> Login without storing Login-Data will result in Refresh-Logout
+
  
 Verwendungszweck: Planung
 Nutzerpfade GUI überlegen
