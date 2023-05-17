@@ -1,0 +1,47 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20;
+}
+
+.swipe {
+  display: none;
+}
+
+.waterlevel-button {
+  padding: 10px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  border-bottom: 2px solid lightblue;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  font-family: "Lucida Sans";
+}
+
+.wind-button {
+  padding: 10px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  border-bottom: 2px solid lightblue;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  font-family: "Lucida Sans";
+}
+
+.waterlevel-button:hover,
+.wind-button:hover {
+  background-color: lightblue;
+  color: #333;
+  color: white;
+}
+
+.wind-button:hover ~ .waterlevel-button {
+  background-color: transparent;
+}

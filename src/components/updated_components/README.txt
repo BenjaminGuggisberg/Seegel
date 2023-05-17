@@ -25,6 +25,27 @@
                             
                             -> Login without storing Login-Data will result in Refresh-Logout
 
+24.04.2023                  > Diagramme Timestamp & X-Achsen Beschriftung
+                            > Beschriftung Anzeigen
+                            > Wind Daten Diagramme implementieren
+                            > Karten Layer implementieren
+                            > Server aufsetzen
+                            > BACK button oben link anstelle LOGO
+                
+25.04.2023                  > Diagramme Achsenbeschriftungen / Maximal #Werte
+                            > Wind Daten Zusammenfassung in FastAPI - Messstationen
+                            > Umsetzung GeoServer und Karten-Display
+                            > Raspi-Server aufsetzen
+                            
+                            > !! TOKENS FÜR LOGIN - USER_INFO !!                |   |
+                            > !! Diagramm TIME FILTER !!                        |   |
+                            > !! Display MAP !!                                 |   |     
+                            > !! JEDE email UNIQUE ¦ JEDE email EXISTS !!       |   |
+                            > !! ALLES UNTER 20M LÖSCHEN AN SEEDATEN !!         | X |    
+                            > !! GPS Position if position.coords within Lake !! |   |
+                            > !! VISUALISIERUNGEN AUF Karten !!                 |   |
+
+
  
 Verwendungszweck: Planung
 Nutzerpfade GUI überlegen

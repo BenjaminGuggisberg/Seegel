@@ -1,33 +1,46 @@
   #body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Lucida Sans";
   }
+
+  #formdiv {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .overall {
+    width: 100%;
+  }
+
   body {
     background-color: #E5F5FE;
   }
 
   .form {
-      width: 100%;
-      margin: auto;
-      background-color: white;
-      border: 2px solid #90CAF9;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border: 2px solid #90CAF9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
 
   input[type="email"],
   input[type="text"],
   input[type="password"] {
-      display: block;
-      width: 95%;
-      margin-bottom: 10px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
+    display: block;
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border-radius: 50px;
+    font-family: "Lucida Sans";
   }
 
   .form-buttons {
@@ -37,33 +50,40 @@
   }
 
   button[type="submit"],
-  button[type="button"] {
-    width: 120px;
-    height: 45px;
-    border-style: none;
-    color: #000;
-    transition: all 0.3s ease-in-out;
-    flex: 1;
-    margin-bottom: 0;
+  button[type="logform"] {
+    margin-top: 10px;
+    margin-right: 5px;
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    color: #333;
+    border: 1px solid transparent;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    font-family: "Lucida Sans";
   }
 
   button[type="submit"]:hover,
-  button[type="button"]:hover {
-    background-color: darkgrey;
-    color: white;
+  button[type="logform"]:hover {
+    transform: translateY(-3px);
+    background-color: rgb(63, 61, 61);
+    color: #fff;
   }
+  
 
   #sail {
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 180px; /* Set the width to your desired size */
+    width: 180px;
     height: auto;
   }
-  
+
   .message {
     position: absolute;
-    margin-top:90px;
+    margin-top: 90px;
     text-align: center;
     padding: 10px;
   }

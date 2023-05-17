@@ -32,7 +32,7 @@ function Login(props) {
     }
 
     axios
-      .post("http://localhost:8000/api/login", json, {
+      .post("http://localhost:8000/api/log_hash", json, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,8 +40,7 @@ function Login(props) {
       .then((response) => {
         console.log(response.data);
         if (response.data) {
-          props.onUsername(response.data.username);
-          props.onLoginSuccess();
+            props.onLoginSuccess(response);
         }
       })
       .catch((error) => {
@@ -51,40 +50,44 @@ function Login(props) {
 
   return (
     <div id='body'>
-      <div>
-        <img
+      <div id='overall'>
+        <div id="formdiv">
+        {!showRegisterForm ? (
+          <>
+          <img
           id='sail'
           src="Sailing.png"
           alt="Segelschiff-Icon"
-        />
-        {!showRegisterForm ? (
+          />
           <form className='form' onSubmit={handleSubmit}>
             <div>
               <label>
                 Email:
               </label>
               <br />
-              <input type="email" value={email} onChange={handleEmailChange} />
+              <input type="email" value={email} onChange={handleEmailChange} required/>
             </div>
             <div>
               <label>
                 Password:
               </label>
               <br />
-              <input type="password" value={password} onChange={handlePasswordChange} />
+              <input type="password" value={password} onChange={handlePasswordChange} required/>
             </div>
             <div className="form-buttons">
               <div>
                 <button type="submit">Login</button>
               </div>
               <div >
-                <button type="button" onClick={handleRegisterClick}>Register</button>
+                <button type="logform" onClick={handleRegisterClick}>Register</button>
               </div>
             </div>
           </form>
+          </>
         ) : (
           <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
         )}
+        </div>
       </div>
     </div>
   );

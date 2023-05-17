@@ -1,10 +1,14 @@
 .datawindow {
     background-color: lightblue;
-    border: 2px solid black;
-    height: 85px;
+    border: 1px solid black;
+    height: 80px;
     position: relative;
-    width: 70%;
+    width: 80%;
     margin: auto;
     margin-top: 20px;
     padding: 10px;
+    font-family: "Lucida Sans";
+    font-size: medium;
+    text-align: center;
+    align-items: center;
 }

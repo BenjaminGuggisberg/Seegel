@@ -13,8 +13,10 @@ function DataWindow(props) {
     color: 'black',
   };
 
+  
+
   return (
-    <div className='datawindow'>
+    <div className='datawindow' style={{width: '80%'}}>
       <h2>Data Window</h2>
       <p>This is the data window content.</p>
       <button onClick={props.onClose} style={closeButtonStyle}>X</button>

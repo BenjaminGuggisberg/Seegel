@@ -9,9 +9,16 @@ const RegisterForm = (props) => {
   const [registered, setRegistered] = useState(false);
   const [message, setMessage] = useState(false);
 
-  const ChangeForm = () => setRegistered(true);
-  const Registrationmessage = () => setMessage(true);
+  const ChangeForm = () => {
+    setRegistered(true)
+    window.location.reload();
+  };
 
+  const Registrationmessage = () => {
+    if (email, username, password) {
+      setMessage(true)
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,7 +29,7 @@ const RegisterForm = (props) => {
     // }
 
     await axios
-      .post('http://localhost:8000/api/register', {
+      .post('http://localhost:8000/api/reg_hash', {
         email,
         username,
         password,
@@ -33,6 +40,12 @@ const RegisterForm = (props) => {
 
   return (<>
     {!registered ? (
+      <>
+      <img
+          id='sail'
+          src="Sailing.png"
+          alt="Segelschiff-Icon"
+          />
       <form className='form' onSubmit={handleSubmit}>
         <div>
           <label>
@@ -60,14 +73,16 @@ const RegisterForm = (props) => {
             <button type="submit" onClick={() => Registrationmessage()}>Register</button>
           </div>
           <div>
-            {/* <button type="button" onClick={ChangeForm}>Back to Login</button> */}
-            <button type="button" onClick={() => window.location.reload()}>Back to Login</button> {/* This button just refreshes the URL of the actual Page, because of rendering between to Child-Components won't work without rendering error */}
+            <button type="logform" onClick={ChangeForm}>Back</button>
+            {/* <button type="logform" onClick={() => window.location.reload()}>Back</button> This button just refreshes the URL of the actual Page, because of rendering between to Child-Components won't work without rendering error */}
           </div>
           <div className='message'>
-            {message && <div><p>Welcome {username}! You have successfully registered for Seegel.</p></div>}
+            {message && <div><p>Welcome {username}! You have successfully registered for Seegel.</p>
+            <p>Go "Back" to Login for Seegel :D</p></div>}
           </div>
         </div>
       </form>
+      </>
     ) : (
       <Login />
     )}
