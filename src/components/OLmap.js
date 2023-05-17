@@ -5,6 +5,11 @@ import { Projection } from 'ol/proj';
 import ImageWMS from 'ol/source/ImageWMS';
 import TileLayer from 'ol/layer/Tile';
 import TileWMS from 'ol/source/TileWMS';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
+import { bbox as bboxStrategy } from 'ol/loadingstrategy.js';
+import { Style, Fill, Circle, Stroke } from 'ol/style';
 import axios from 'axios';
 // import {bbox as bboxStrategy} from 'ol/loadingstrategy.js';
 
@@ -62,11 +67,39 @@ class OLmap extends Component {
 
 
   componentDidMount() {
-    const { center, zoom, component01, component02 } = this.props;
+    const { center, zoom, layer, component01, component02 } = this.props;
     const mapContainer = document.getElementById('map');
     mapContainer.style.width = '85%';
     mapContainer.style.margin = 'auto';
     mapContainer.style.height = '400px';
+
+// ------ Vector Source --------------------------------------------------------------
+    var vectorSource = new VectorSource({
+      format: new GeoJSON(),
+      url: function(extent) {
+        return 'http://localhost:8080/geoserver/wfs?service=WFS&' +
+                'version=1.1.0&request=GetFeature&typename=messstationen:' + layer + '&' +
+                'outputFormat=application/json';
+      },
+      strategy: bboxStrategy
+    });
+
+// ------ Vector Layer ---------------------------------------------------------------
+    var vector = new VectorLayer({
+      source: vectorSource,
+      style: new Style({
+        image: new Circle({
+          radius: 5,
+          fill: new Fill({
+            color: 'black'
+          }),
+          stroke: new Stroke({
+            color: 'white',
+            width: '1.3'
+          })
+        })
+      })
+    });
 
     //     var vectorSource = new VectorSource({
     //       format: new GeoJSON(),
@@ -135,7 +168,8 @@ class OLmap extends Component {
       layers: [
         wmtsLayer,
         // bielersee,
-        bielersee_float64                         // KOMMENTAR:  Dies sind Vektorlayer von Geoserver - ursprüngliche erstellte Methode zur Visualisierung im 1m Bereich anhand von WFS
+        bielersee_float64,                        // KOMMENTAR:  Dies sind Vektorlayer von Geoserver - ursprüngliche erstellte Methode zur Visualisierung im 1m Bereich anhand von WFS
+        vector
       ],                                          // Neu Rasteranalyse der Daten und Darstellung über Geoserver
       view: new View({
         center: center,
@@ -147,11 +181,25 @@ class OLmap extends Component {
       }),
       controls: [],
     });
-    map.on('singleclick', this.handleClick);
-  }
 
+// ------ Forecast -------------------------------------------------------------------
+    //const url = `http://localhost:8000/prognose_bo/${id}`
 
+    const displayFeatureInfo = pixel => {
+      vector.getFeatures(pixel).then(function (features) {
+        const feature = features.length ? features[0] : undefined;
+        if (feature) {
+          const extent = feature.getGeometry().getExtent();
+          var att = feature.getProperties();
+          var stat_id = feature.getId()
+          var id = stat_id.substring(stat_id.indexOf('.')+1);
+          console.log(id, att.name);
+        };
+      });
+    };
 
+    map.on('click', (evt) => {displayFeatureInfo();})
+  };
 
   render() {
     const { demValue, isLoading, mapclick } = this.state

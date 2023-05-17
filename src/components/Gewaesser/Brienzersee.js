@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 // import MapComponent from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/MapComponent';
-import DataBrienzersee from '../lake_components/DataBrienzersee'
+import DataBrienzersee from '../lake_components/DataBrienzersee';
 // import OLmap from 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/OLmap';
-import '../css/Footer.css'
+import '../css/Footer.css';
 import DataWindow from '../lake_components/datawindow_bielersee';
 import OLmap from '../OLmap';
 
@@ -11,6 +11,7 @@ import OLmap from '../OLmap';
 function Page4(props) {
   const center = [2640648.9647, 1175226.5319];
   const zoom = 12;
+  const layer = 'messstationen_BO';
   const component01 = '';
   const component02 = '';
   const url = './bathimetry_tif/zusammengefuehrt_brienzersee.tif';
@@ -51,7 +52,7 @@ function Page4(props) {
     <div style={{ marginTop: '42%' }}>
     </div>
     {/* <OLmap id='map' className='map' center={center} zoom={zoom} onClick={handleMapClick}> */}
-    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBrienzersee />}
+    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} layer={layer} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBrienzersee />}
     {/* </OLmap> */}
     {/* {showMap && (<><div style={{ marginTop: '10%', textAlign: 'center' }}>
           <h4>Further Information</h4>
