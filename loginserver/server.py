@@ -526,6 +526,37 @@ async def upload_profile_picture(username: str, email: str):
     return JSONResponse(status_code=200, content={"message": "Profile picture deleted successfully"})
 
 
+class DeleteAccountRequest(BaseModel):
+    username: str
+    email: str
+
+@app.delete('/api/delete-account')
+def delete_account(request: DeleteAccountRequest):
+    username = request.username
+    email = request.email
+    # Connect to the PostgreSQL database
+    conn = db_pool.getconn()
+    # Create a cursor object to execute SQL queries
+    cursor = conn.cursor()
+    try:
+        # Execute the deletion query
+        cursor.execute(
+            "DELETE FROM users WHERE username = %s AND email = %s",
+            (username, email)
+        )
+        # Commit the changes to the database
+        conn.commit()
+        return {'message': 'Account deleted successfully'}
+    except psycopg2.Error as e:
+        # Handle any errors that occurred during the deletion
+        # You can log the error or return an appropriate response
+        return {'message': 'Failed to delete account'}
+    finally:
+        # Close the cursor and database connection
+        cursor.close()
+        conn.close()
+
+
 
 def get_profile_picture_location(username: str):
     # connect to the database

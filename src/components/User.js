@@ -167,6 +167,24 @@ function User(props) {
         }, 100);
     };
 
+    const AccountDelete = async () => {      
+        try {
+          const response = await axios.delete('http://localhost:8000/api/delete-account', {
+            data: {
+              username: currentuser,
+              email: currentmail,
+            },
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+        props.handleLogout();
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("email");
+        window.location.reload();
+      };
+
 
     return (<>
         <div style={{ marginTop: "42%" }}>
@@ -350,6 +368,10 @@ function User(props) {
         <br /><br />
         <div style={{ display: 'flex', textAlign: 'center', justifyContent: 'center' }}>
             <p style={{ fontSize: 'xx-small', width: '70%', fontStyle: 'italic' }}>(Take care using personal pictures - Software security development in progress!)</p>
+        </div>
+        <br/>
+        <div style={{textAlign: 'center'}}>
+            <button onClick={AccountDelete} style={{ background: 'transparent', border: '1px solid red', borderRadius: '50px', height: '10%', padding: '12px', fontSize: 'medium', fontFamily: 'Lucida Sans', color: 'red' }}>Account löschen</button>
         </div>
         <div>
             <br /><br />
