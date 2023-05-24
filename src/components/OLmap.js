@@ -237,7 +237,7 @@ class OLmap extends Component {
           var wg = response.data.map(subArray => subArray[3]);
           var dtl = response.data.map(subArray => subArray[4]);
 
-          this.setState({wd: wd});
+          //this.setState({wd: wd});
 
           console.log(response.data, "Windrichtung: ", wd,"Windgeschwindigkeit: ", ws, "Böen: ", wg, "Zeit: ", dtl);
         })
@@ -270,7 +270,7 @@ class OLmap extends Component {
                 <>
                   {/* <div><p style={{fontWeight:'bolder'}}>DEM Value:</p><p>{demValue}</p></div> */}
                   <div><p style={{fontWeight:'bolder'}}>Lake Depth</p><p>{(this.props.actuallevel - demValue).toFixed(3)} Meter</p></div>
-                  <div><p style={{fontWeight:'bolder'}}>Forecast</p><p>{(this.props.wd)}</p></div>
+                  {/* <div><p style={{fontWeight:'bolder'}}>Forecast</p><p>{(this.props.wd)}</p></div> */}
                   <button onClick={this.CloseData}
                     style={{
                       position: 'absolute',
