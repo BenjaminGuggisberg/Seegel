@@ -1,0 +1,33 @@
+.loading-page {
+    position: relative;
+    height: 100vh;
+  }
+  
+  .boat {
+    position: absolute;
+    z-index: 1;
+    transform: rotate(0deg);
+    animation: rock 2s ease-in-out infinite alternate;
+    margin-left: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .svg {
+    position: absolute;
+    z-index: 0;
+    margin-top: 515px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @keyframes rock {
+    from {
+      transform: rotate(10deg);
+    }
+    to {
+      transform: rotate(-10deg);
+    }
+  }

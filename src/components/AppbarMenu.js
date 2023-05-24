@@ -29,10 +29,36 @@ function AppbarMenu(props) {
         <img
           src="Sailing.png"
           alt="Segelschiff-Icon"
-          style={{ height: 74, marginLeft: '5%' }}
+          style={{ height: 74, marginLeft: '5%', marginTop: '3%' }}
         />
         <h2>{props.nameTag}</h2>
-        <img className="usericon" style={{ height: 100, marginRight: '4%', marginBottom: '2%', cursor: 'pointer'}} src="user.png" alt="User" onClick={() => handleButtonClick()} />
+        {props.profilePictureUrl ? (
+          <>
+            <img
+              src={props.profilePictureUrl}
+              alt='Profile Picture'
+              style={{
+                height: 45,
+                width: 45,
+                marginRight: '4%',
+                marginBottom: '0%',
+                cursor: 'pointer',
+                border: '5px solid lightblue',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                background: 'white',
+                padding: '2px',
+                objectPosition: 'center center',
+              }}
+              onClick={() => handleButtonClick()}
+            />
+
+          </>
+        ) : (
+          <>
+            <img className="usericon" style={{ height: 100, marginRight: '4%', marginBottom: '1%', cursor: 'pointer' }} src="user.png" alt="User" onClick={() => handleButtonClick()} />
+          </>
+        )}
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-import '../css/datawindow.css';
+import 'C:/Users/benjg/Dokumente/React_projekte/G4/Projekt_WebGIS/template/src/components/css/datawindow.css'
+import '../css/datawindow.css'
 
 function DataWindow(props) {
   const closeButtonStyle = {

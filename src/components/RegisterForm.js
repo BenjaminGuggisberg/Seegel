@@ -47,6 +47,8 @@ const RegisterForm = (props) => {
           alt="Segelschiff-Icon"
           />
       <form className='form' onSubmit={handleSubmit}>
+      {message && <div style={{textAlign: 'center'}}><p style={{color: 'green'}}>Welcome {username}! You have successfully registered for Seegel.</p>
+            <p>Go "Back" to Login for Seegel :D</p></div>}
         <div>
           <label>
             Email:
@@ -76,9 +78,7 @@ const RegisterForm = (props) => {
             <button type="logform" onClick={ChangeForm}>Back</button>
             {/* <button type="logform" onClick={() => window.location.reload()}>Back</button> This button just refreshes the URL of the actual Page, because of rendering between to Child-Components won't work without rendering error */}
           </div>
-          <div className='message'>
-            {message && <div><p>Welcome {username}! You have successfully registered for Seegel.</p>
-            <p>Go "Back" to Login for Seegel :D</p></div>}
+          <div className='message' style={{fontFamily: 'Lucida Sans', fontSize: 'x-small'}}>
           </div>
         </div>
       </form>
