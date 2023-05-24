@@ -12,6 +12,7 @@ function Page4(props) {
   const center = [2640648.9647, 1175226.5319];
   const zoom = 12;
   const layer = 'messstationen_BO';
+  const prognose = 'prognose_bo';
   const component01 = '';
   const component02 = '';
   const url = './bathimetry_tif/zusammengefuehrt_brienzersee.tif';
@@ -52,7 +53,7 @@ function Page4(props) {
     <div style={{ marginTop: '42%' }}>
     </div>
     {/* <OLmap id='map' className='map' center={center} zoom={zoom} onClick={handleMapClick}> */}
-    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} layer={layer} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBrienzersee />}
+    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} layer={layer} prognose={prognose} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBrienzersee />}
     {/* </OLmap> */}
     {/* {showMap && (<><div style={{ marginTop: '10%', textAlign: 'center' }}>
           <h4>Further Information</h4>

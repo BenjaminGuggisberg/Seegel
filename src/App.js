@@ -143,7 +143,7 @@ function App() {
     <>
       <div id='first' style={{fontFamily: "Lucida Sans"}}>
         <div id='second'>
-          {isLoggedIn ? (<>
+          {<>
             <div id='third'>
               <div id='fourth'>
                 {currentPage === 'menu' && (
@@ -189,9 +189,7 @@ function App() {
             </div><br /><br />
             {currentPage === 'menu' && <footer id='menufooter'><p id='p1'>Copyright © 2023 | Sara Hauser | Benjamin Guggisberg</p><p id='p2'>All rights reserved</p></footer>}
           </>
-          ) : (
-            <Login onLoginSuccess={handleLoginSuccess} />
-          )}
+          }
         </div>
       </div>
       {/* <div>
