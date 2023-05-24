@@ -1,0 +1,8 @@
+Download zipped tif-files:
+
+- sftp://ubuntu@vm12.sourcelab.ch:212/var/www/html/zip_files/zusammengefuehrt_brienzersee.zip
+- sftp://ubuntu@vm12.sourcelab.ch:212/var/www/html/zip_files/zusammengefuehrt_thunersee.zip
+- sftp://ubuntu@vm12.sourcelab.ch:212/var/www/html/zip_files/zusammengefuehrt_bielersee.zip
+- sftp://ubuntu@vm12.sourcelab.ch:212/var/www/html/zip_files/neuenburgersee_float64.zip
+
+unzip and load them into folder 'bathimetry_tif'
