@@ -30,10 +30,34 @@ function Appbar(props) {
             <div id='appbar_child'>
                 <h2 id='theme'>{props.nameTag}</h2>
                 <div id="navigation">
-                    <img className="backbutton" style={{ height: 30, marginBottom: '0%', marginLeft: '7%', cursor: 'pointer'}} src="back-button.png" alt="Back" onClick = {() => props.onClick('menu')} />
+                    <img className="backbutton" style={{ height: 30, marginBottom: '0%', marginLeft: '7%', cursor: 'pointer' }} src="back-button.png" alt="Back" onClick={() => props.onClick('menu')} />
                     {props.currentPage !== 'user' && (
-                        <img className="usericon" style={{ height: 100, marginRight: '4%', marginBottom: '1%', cursor: 'pointer'}} src="user.png" alt="User" onClick={() => handleButtonClick()} />
+                        <>
+                            {props.profilePictureUrl ? (
+                                <img
+                                src={props.profilePictureUrl}
+                                alt='Profile Picture'
+                                style={{
+                                  height: 35,
+                                  width: 35,
+                                  marginRight: '4%',
+                                  marginBottom: '0%',
+                                  cursor: 'pointer',
+                                  border: '5px solid lightblue',
+                                  borderRadius: '50%',
+                                  objectFit: 'cover',
+                                  background: 'white',
+                                  padding: '2px',
+                                  objectPosition: 'center center',
+                                }}
+                                onClick={() => handleButtonClick()}
+                              />
+                            ) : (
+                                <img className="usericon" style={{ height: 100, marginRight: '4%', marginBottom: '1%', cursor: 'pointer' }} src="user.png" alt="User" onClick={() => handleButtonClick()} />
+                            )}
+                        </>
                     )}
+
                 </div>
             </div>
         </>

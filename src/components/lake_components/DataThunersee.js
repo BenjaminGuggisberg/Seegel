@@ -2,15 +2,32 @@ import React, { useState, useEffect } from "react";
 import { LineChart, Line, Area, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import '../css/data.css'
 
-function DataThunersee() {
+function DataThunersee(props) {
   const [waterlevels, setWaterLevels] = useState([]);
   const [showlevel, setShowLevel] = useState(true);
+  const [InfosVisible, setInfosVisible] = useState(false);
+  const [buttonname, setButtonName] = useState('Gefahrenstufen einblenden')
 
   const winddata_example = [{ 'localtime': '15.00', 'direction': 230, 'speed': 23, 'maxSpeed': 29 },
   { 'localtime': '16.00', 'direction': 233, 'speed': 24, 'maxSpeed': 30 },
   { 'localtime': '17.00', 'direction': 140, 'speed': 27, 'maxSpeed': 34 },
   { 'localtime': '18.00', 'direction': 148, 'speed': 12, 'maxSpeed': 14 },
   { 'localtime': '19.00', 'direction': 139, 'speed': 11, 'maxSpeed': 14 },]
+
+  const showInformations = () => {
+    setInfosVisible(!InfosVisible);
+    setButtonName(InfosVisible ? 'Gefahrenstufen einblenden' : 'Gefahrenstufen ausblenden');
+  }
+
+  useEffect(() => {
+    if (!props.showMap) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (InfosVisible) {
+      window.scrollTo({ top: 500, behavior: 'smooth' });
+    }
+    
+  }, [props.showMap, InfosVisible]);
 
   const LevelViewer = () => {
     setShowLevel(true)
@@ -38,17 +55,17 @@ function DataThunersee() {
     <div style={{ marginTop: '3%' }}>
       <div className="button-container">
         <button className="waterlevel-button" onClick={LevelViewer}>
-          Waterlevel
+          Wasserpegel
         </button>
         <button className="wind-button" onClick={WindViewer}>
-          Wind Forecast
+          Wind-Vorhersage
         </button>
         <div className="swipe"></div>
       </div>
 
       {showlevel ? (<>
-        <div style={{ marginTop: '5%' }}>
-          <h2>Water Levels (last 5 hours)</h2>
+        <div style={{ marginTop: '5%', textAlign: 'center'}}>
+          <h2>Wasserpegel (letzte 10 Einträge)</h2>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 0 }}>
             <ResponsiveContainer width='80%' height={300}>
               <LineChart
@@ -68,7 +85,23 @@ function DataThunersee() {
               </LineChart>
             </ResponsiveContainer>
           </div>
-
+          <br/>
+          <hr style={{ borderTop: '2px solid lightblue', width: '80%', marginTop: '6%' }} />
+          <div style={{textAlign: 'center'}}>
+            <button style={{ marginTop: '10%', padding: '10px', background: 'transparent', color: 'black', border: 'none', borderBottom: '2px solid lightblue', fontSize: '16px', cursor: 'pointer', transition: 'all 0.3s ease-in-out', position:'realtive', fontFamily: 'Lucida Sans' }} onClick={() => showInformations()}>{buttonname}</button>
+          </div>
+          <br/><br/><br/>
+          {InfosVisible && (<>
+            <table style={{ margin: '0 auto', border: '1px solid lightblue', fontFamily: 'Lucida Sans', fontSize: 'smaller' }}>
+              <thead>
+                <tr>
+                  <th>Gefahrenstufe</th>
+                  <th>Wasserstand (m ü.M)</th>
+                </tr>
+              </thead>
+              <tbody>{props.renderTableRows()}</tbody>
+            </table>
+            </>)}
         </div>
       </>
       ) : (<>

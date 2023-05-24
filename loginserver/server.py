@@ -24,12 +24,20 @@ origins = [
 # Enable Cross-Origin Resource Sharing (CORS) middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Replace with the appropriate origins
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
-
 )
+
+# Origin Settings for CORS Policy
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 # Define the database connection pool
 DB_HOST = "localhost"
@@ -352,7 +360,7 @@ async def login(login_request: LoginRequestBody):
             # Release the connection back to the database connection pool
             db_pool.putconn(conn)
 
-
+# -------------------------------------- Umsetzung direkt mit .tif File - .tif file zu gross -----------------------------------------
 def load_tif(file_path):
     with rasterio.open(file_path) as src:
         return src.read()
@@ -374,6 +382,55 @@ def get_dem(longitude: str, latitude: str, tif_file: str):
         return {"dem_value": dem_value}
     except Exception as e:
         return {"error": str(e)}
+# ------------------------------------------------------------------------------------------------------------------------------------
+
+# --------------------------------------------- Umsetzung mit .zip File --------------------------------------------------------------
+# import os
+# import zipfile
+# import tempfile
+# import rasterio
+
+# def unzip_tif(zip_file_path, output_dir):
+#     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+#         tif_files = [f for f in zip_ref.namelist() if f.endswith('.tif') or f.endswith('.tiff')]
+#         if len(tif_files) == 0:
+#             raise ValueError("No TIF files found in the ZIP archive.")
+#         elif len(tif_files) > 1:
+#             raise ValueError("Multiple TIF files found in the ZIP archive. Please provide a single TIF file.")
+        
+#         extracted_file_path = zip_ref.extract(tif_files[0], path=output_dir)
+#         return extracted_file_path
+
+# def load_tif(file_path):
+#     with rasterio.open(file_path) as src:
+#         return src.read()
+
+# def get_dem_value(longitude: float, latitude: float, tif_file: str):
+#     with rasterio.open(tif_file) as src:
+#         x, y = longitude, latitude
+#         row, col = src.index(x, y)
+#         dem_value = src.read(1, window=((row, row+1), (col, col+1)))
+#     return dem_value[0, 0]
+
+# @app.get("/dem")
+# def get_dem(longitude: str, latitude: str, tif_file: str):
+#     try:
+#         longitude_float = float(longitude)
+#         latitude_float = float(latitude)
+
+#         if tif_file.endswith('.zip'):
+#             # Create a temporary directory to extract the TIF file
+#             with tempfile.TemporaryDirectory() as temp_dir:
+#                 tif_file_path = unzip_tif(tif_file, temp_dir)
+#                 dem_value = get_dem_value(longitude_float, latitude_float, tif_file_path)
+#         else:
+#             dem_value = get_dem_value(longitude_float, latitude_float, tif_file)
+
+#         return {"dem_value": dem_value}
+#     except Exception as e:
+#         return {"error": str(e)}
+# ----------------------------------------------- Performance Problem !! ---------------------------------------------------------------
+
 
 
 def get_user_data(username: str, email: str):
@@ -414,6 +471,21 @@ def update_profile_picture(username: str, email: str, file_location: str):
     cur.close()
     conn.close()
 
+def delete_profile_picture(username: str, email: str):
+    # open a connection to the database
+    conn = db_pool.getconn()
+    # create a cursor object to execute queries
+    cur = conn.cursor()
+
+    # update the user's profile picture in the database
+    sql = "UPDATE users SET profilepicture = null WHERE username = %s AND email = %s"
+    cur.execute(sql, (username, email))
+
+    # commit the transaction and close the connection
+    conn.commit()
+    cur.close()
+    conn.close()
+
 @app.post("/upload-profile-picture")
 async def upload_profile_picture(username: str, email: str, profilepicture: UploadFile = File(...)):
     # check if the user already has a profile picture stored
@@ -438,6 +510,22 @@ async def upload_profile_picture(username: str, email: str, profilepicture: Uplo
 
     image_url = f'/images/{username}/{profilepicture.filename}'
     return JSONResponse(status_code=200, content={"message": "Profile picture uploaded successfully", "image_url": image_url})
+
+
+@app.post("/delete-profile-picture")
+async def upload_profile_picture(username: str, email: str):
+    # check if the user already has a profile picture stored
+    user_data = get_user_data(username, email)
+    if user_data["profilepicture"]:
+        # if the user has a profile picture, delete the old file from the server
+        os.remove(user_data["profilepicture"])
+
+    # update the user's profile picture in the database
+    delete_profile_picture(username, email)
+
+    return JSONResponse(status_code=200, content={"message": "Profile picture deleted successfully"})
+
+
 
 def get_profile_picture_location(username: str):
     # connect to the database
@@ -464,6 +552,22 @@ async def get_profile_picture(username: str):
 
     # serve the image file to the frontend
     return FileResponse(file_location)
+
+# def get_username_hash(username: str) -> str:
+#     # generate SHA-256 hash of the username
+#     return hashlib.sha256(username.encode()).hexdigest()
+
+# @app.get("/get-profile-picture/{hashed_username}")
+# async def get_profile_picture(hashed_username: str):
+#     # retrieve the file location from the user's database
+#     username = get_username_from_hash(hashed_username)
+#     file_location = get_profile_picture_location(username)
+
+#     # serve the image file to the frontend
+#     return FileResponse(file_location)
+
+
+
 
 
 if __name__ == "__main__":
