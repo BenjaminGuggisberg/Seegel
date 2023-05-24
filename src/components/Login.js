@@ -4,10 +4,9 @@ import './css/login.css'
 import RegisterForm from "./RegisterForm";
 
 function Login(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
@@ -46,7 +45,6 @@ function Login(props) {
       })
       .catch((error) => {
         console.log(error);
-        setErrorMessage("Invalid email or password!"); 
       });
   };
 
@@ -62,7 +60,6 @@ function Login(props) {
           alt="Segelschiff-Icon"
           />
           <form className='form' onSubmit={handleSubmit}>
-          {errorMessage && <div style={{color: 'red'}} className="error">{errorMessage}<br/><br/></div>}
             <div>
               <label>
                 Email:

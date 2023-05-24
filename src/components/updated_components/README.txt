@@ -37,25 +37,16 @@
                             > Umsetzung GeoServer und Karten-Display
                             > Raspi-Server aufsetzen
                             
-                            > !! TOKENS FÜR LOGIN - USER_INFO !!                | - | spätere Projektphase
-                            > !! Diagramm TIME FILTER !!                        | - | spätere Projektphase
-                            > !! Display MAP !!                                 | ! |     
-                            > !! JEDE email UNIQUE ¦ JEDE email EXISTS !!       | X |
+                            > !! TOKENS FÜR LOGIN - USER_INFO !!                |   |
+                            > !! Diagramm TIME FILTER !!                        |   |
+                            > !! Display MAP !!                                 |   |     
+                            > !! JEDE email UNIQUE ¦ JEDE email EXISTS !!       |   |
                             > !! ALLES UNTER 20M LÖSCHEN AN SEEDATEN !!         | X |    
-                            > !! GPS Position if position.coords within Lake !! | - | spätere Projektphase
+                            > !! GPS Position if position.coords within Lake !! |   |
                             > !! VISUALISIERUNGEN AUF Karten !!                 |   |
-                            > !! Schwellwert - Gefahrenstufe 5 Menü-Anzeige !!  |   |
 
-
-ANSTELLE VON USERNAME & EMAIL ADRESSE TOKENS VERWENDEN - AUCH FÜR PROFILBILDABFRAGE NACH TOKEN FRAGEN NICHT USERNAME (SECURITY)
-AUTHENTIFIZIERUNG FÜR REGISTRATION MITTELS EMAIL BESTÄTIGUNG
-EMAIL VERSAND FÜR PUSHBENACHRICHITUNGEN
 
  
-
-
-
-
 Verwendungszweck: Planung
 Nutzerpfade GUI überlegen
 In welcher Reihenfolge anschauen?  Web App nach Ablauf aufbauen

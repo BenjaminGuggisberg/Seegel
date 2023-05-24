@@ -24,20 +24,12 @@ origins = [
 # Enable Cross-Origin Resource Sharing (CORS) middleware to allow requests from any origin
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace with the appropriate origins
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_methods=["*"],
     allow_headers=["*"],
-)
 
-# Origin Settings for CORS Policy
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+)
 
 # Define the database connection pool
 DB_HOST = "localhost"
@@ -422,21 +414,6 @@ def update_profile_picture(username: str, email: str, file_location: str):
     cur.close()
     conn.close()
 
-def delete_profile_picture(username: str, email: str):
-    # open a connection to the database
-    conn = db_pool.getconn()
-    # create a cursor object to execute queries
-    cur = conn.cursor()
-
-    # update the user's profile picture in the database
-    sql = "UPDATE users SET profilepicture = null WHERE username = %s AND email = %s"
-    cur.execute(sql, (username, email))
-
-    # commit the transaction and close the connection
-    conn.commit()
-    cur.close()
-    conn.close()
-
 @app.post("/upload-profile-picture")
 async def upload_profile_picture(username: str, email: str, profilepicture: UploadFile = File(...)):
     # check if the user already has a profile picture stored
@@ -461,22 +438,6 @@ async def upload_profile_picture(username: str, email: str, profilepicture: Uplo
 
     image_url = f'/images/{username}/{profilepicture.filename}'
     return JSONResponse(status_code=200, content={"message": "Profile picture uploaded successfully", "image_url": image_url})
-
-
-@app.post("/delete-profile-picture")
-async def upload_profile_picture(username: str, email: str):
-    # check if the user already has a profile picture stored
-    user_data = get_user_data(username, email)
-    if user_data["profilepicture"]:
-        # if the user has a profile picture, delete the old file from the server
-        os.remove(user_data["profilepicture"])
-
-    # update the user's profile picture in the database
-    delete_profile_picture(username, email)
-
-    return JSONResponse(status_code=200, content={"message": "Profile picture deleted successfully"})
-
-
 
 def get_profile_picture_location(username: str):
     # connect to the database
@@ -503,22 +464,6 @@ async def get_profile_picture(username: str):
 
     # serve the image file to the frontend
     return FileResponse(file_location)
-
-# def get_username_hash(username: str) -> str:
-#     # generate SHA-256 hash of the username
-#     return hashlib.sha256(username.encode()).hexdigest()
-
-# @app.get("/get-profile-picture/{hashed_username}")
-# async def get_profile_picture(hashed_username: str):
-#     # retrieve the file location from the user's database
-#     username = get_username_from_hash(hashed_username)
-#     file_location = get_profile_picture_location(username)
-
-#     # serve the image file to the frontend
-#     return FileResponse(file_location)
-
-
-
 
 
 if __name__ == "__main__":

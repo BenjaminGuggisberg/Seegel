@@ -1,5 +1,5 @@
-function AnimatedIcon() {
-  const myAnimatedSailHtml = require('../Loadingpage/waves.html');
+function MyComponent() {
+  const myAnimatedSailHtml = require('./public/animated_icon.html');
 
   return (
     <div>
@@ -9,6 +9,4 @@ function AnimatedIcon() {
     </div>
   );
 }
-
-export default AnimatedIcon
 
