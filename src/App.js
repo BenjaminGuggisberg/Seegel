@@ -10,7 +10,7 @@ import '../src/components/css/seegel.css'
 import Login from './components/Login';
 import Appbar from './components/Appbar';
 import axios from 'axios';
-import zIndex from '@mui/material/styles/zIndex';
+import crypto from 'crypto-browserify';
 // import AnimatedIcon from './components/updated_components/animated_icon';
 
 function App() {
@@ -57,8 +57,7 @@ function App() {
     }
   }, [currentuser]);
 
-
-
+  
   const [buttons, setButtons] = useState([
     { id: 1, text: 'Bielersee', favorite: false },
     { id: 2, text: 'Neuenburgersee', favorite: false },
@@ -94,7 +93,7 @@ function App() {
         })
       );
     }
-  }, []);
+  }, []); // [] Dependendy Array - remove / add currentuser
   
 
   const handleSearch = (event) => {
@@ -218,7 +217,7 @@ function App() {
       setIsLoggedIn(true);
     }
     setname();
-  }, [currentPage]);
+  }, [currentPage]); // [] Dependency Array remove / add setname
 
   const handleClick = (page) => {
     // if (currentPage === 'user') {
@@ -251,7 +250,7 @@ function App() {
                       </ul> */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40%', height: '750px' }}>
                         <div style={{ display: 'flex', width: 'inherit', justifyContent: 'center', marginRight: '30px'}}>
-                          <input type='text' placeholder='  Wo möchtest du segeln ?' value={searchTerm} onChange={handleSearch} style={{ width: '230px', height: '25px' }} />
+                          <input type='text' placeholder='  Wo möchtest du segeln? &#9973;' value={searchTerm} onChange={handleSearch} style={{ width: '230px', height: '25px' }} />
                           {searchTerm && (
                             <button onClick={() => setSearchTerm('')} style={{ alignSelf: 'flex-end', marginBottom: '18px', marginLeft: '10px', border: 'none', background: 'transparent', width: '0px' }}>
                               X
@@ -291,7 +290,7 @@ function App() {
                 {currentPage === 'user' && (
                   <>
                     <Appbar nameTag={nameTag} onClick={handleClick} handleClick={handleClick} currentPage={currentPage} profilePictureUrl={profilePictureUrl} />
-                    <User handleLogout={handleLogout} profilePictureUrl={profilePictureUrl} />
+                    <User handleLogout={handleLogout} profilePictureUrl={profilePictureUrl} currentPage={currentPage}/>
                   </>)}
               </div>
             </div><br /><br />

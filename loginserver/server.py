@@ -9,6 +9,8 @@ import hashlib
 import rasterio
 import uvicorn
 import os
+import hashlib
+
 
 
 app = FastAPI()
@@ -583,22 +585,6 @@ async def get_profile_picture(username: str):
 
     # serve the image file to the frontend
     return FileResponse(file_location)
-
-# def get_username_hash(username: str) -> str:
-#     # generate SHA-256 hash of the username
-#     return hashlib.sha256(username.encode()).hexdigest()
-
-# @app.get("/get-profile-picture/{hashed_username}")
-# async def get_profile_picture(hashed_username: str):
-#     # retrieve the file location from the user's database
-#     username = get_username_from_hash(hashed_username)
-#     file_location = get_profile_picture_location(username)
-
-#     # serve the image file to the frontend
-#     return FileResponse(file_location)
-
-
-
 
 
 if __name__ == "__main__":

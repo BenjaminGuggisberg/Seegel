@@ -1,21 +1,26 @@
-def load_tif(file_path):
-    with rasterio.open(file_path) as src:
-        return src.read()
 
-def get_dem_value(longitude: float, latitude: float, tif_file: str):
-    with rasterio.open(tif_file) as src:
-        x, y = longitude, latitude
-        row, col = src.index(x, y)
-        dem_value = src.read(1, window=((row, row+1), (col, col+1)))
-    return dem_value[0, 0]
+def get_profile_picture_location(username: str):
+    # connect to the database
+    conn = psycopg2.connect(database="login", user="postgres", password="postgres", host="localhost", port="5433")
+    cursor = conn.cursor()
+
+    # retrieve the file location for the user's profile picture
+    cursor.execute("SELECT profilepicture FROM users WHERE username= %s", (username,))
+    result = cursor.fetchone()
+
+    # close the database connection
+    conn.close()
+
+    if result:
+        return result[0]
+    else:
+        raise ValueError("User not found")
 
 
-@app.get("/dem")
-def get_dem(longitude: str, latitude: str, tif_file: str):
-    try:
-        longitude_float = float(longitude)
-        latitude_float = float(latitude)
-        dem_value = get_dem_value(longitude_float, latitude_float, tif_file)
-        return {"dem_value": dem_value}
-    except Exception as e:
-        return {"error": str(e)}
+@app.get("/get-profile-picture/{username}")
+async def get_profile_picture(username: str):
+    # retrieve the file location from the user's database
+    file_location = get_profile_picture_location(username)
+
+    # serve the image file to the frontend
+    return FileResponse(file_location)
