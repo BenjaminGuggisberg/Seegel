@@ -37,14 +37,24 @@
                             > Umsetzung GeoServer und Karten-Display
                             > Raspi-Server aufsetzen
                             
-                            > !! TOKENS FÜR LOGIN - USER_INFO !!                | - | spätere Projektphase
-                            > !! Diagramm TIME FILTER !!                        | - | spätere Projektphase
-                            > !! Display MAP !!                                 | ! |     
-                            > !! JEDE email UNIQUE ¦ JEDE email EXISTS !!       | X |
-                            > !! ALLES UNTER 20M LÖSCHEN AN SEEDATEN !!         | X |    
-                            > !! GPS Position if position.coords within Lake !! | - | spätere Projektphase
-                            > !! VISUALISIERUNGEN AUF Karten !!                 |   |
-                            > !! Schwellwert - Gefahrenstufe 5 Menü-Anzeige !!  |   |
+                            > !! TOKENS FÜR LOGIN - USER_INFO !!                                    | - | spätere Projektphase
+                            > !! Diagramm TIME FILTER !!                                            | - | spätere Projektphase
+                            > !! Display MAP !!                                                     | ! |     
+                            > !! JEDE email UNIQUE ¦ JEDE email EXISTS !!                           | X |
+                            > !! ALLES UNTER 20M LÖSCHEN AN SEEDATEN !!                             | X |    
+                            > !! GPS Position if position.coords within Lake !!                     | - | spätere Projektphase
+                            > !! VISUALISIERUNGEN AUF Karten !!                                     |   |
+                            > !! Schwellwert - Gefahrenstufe 5 Menü-Anzeige !!                      | X | nicht in Menü
+                            > !! Wind-Prognose Anzeigen  !!                                         | X |
+                            > !! Wind-Prognose Anzeigen - Radius Features !!                        |   |
+                            > !! Wind-Prognose DB-Performance - Implementierung für alle Seen !!    |   |
+                            
+
+                            > !! See-Pegel: DATENAKTUALITÄT ÜBER API NICHT GEWÄHRLEISTET !! 
+                                > https://swisshydroapi.bouni.de/
+                                > https://www.hydrodaten.admin.ch/en/messstationen_zustand.html
+                                > https://www.hydrodaten.admin.ch/en/2093.html
+
 
 
 ANSTELLE VON USERNAME & EMAIL ADRESSE TOKENS VERWENDEN - AUCH FÜR PROFILBILDABFRAGE NACH TOKEN FRAGEN NICHT USERNAME (SECURITY)

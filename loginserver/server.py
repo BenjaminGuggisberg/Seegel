@@ -20,7 +20,9 @@ origins = [
     'http://localhost',
     'http://localhost:3000',
     # 'http://localhost:8000/dem',
-    'http://localhost:8000'
+    'http://localhost:8000',
+    'http://localhost:8003'
+
 ]
 
 # Enable Cross-Origin Resource Sharing (CORS) middleware to allow requests from any origin
@@ -46,10 +48,12 @@ DB_HOST = "localhost"
 DB_PORT = 5433
 DB_NAME = "login"
 DB_NAME_DATA = "waterlevel_postgis"
+DB_NAME_BO = "wind_BO"
+DB_NAME_S = "wind_S"
 DB_USER = "postgres"
 DB_PASSWORD = "postgres"
 DB_POOL_MIN_CONN = 1
-DB_POOL_MAX_CONN = 10
+DB_POOL_MAX_CONN = 30
 db_pool = pool.SimpleConnectionPool(
     DB_POOL_MIN_CONN,
     DB_POOL_MAX_CONN,
@@ -65,6 +69,24 @@ db_pool_data = pool.SimpleConnectionPool(
     host=DB_HOST,
     port=DB_PORT,
     database=DB_NAME_DATA,
+    user=DB_USER,
+    password=DB_PASSWORD
+)
+db_pool_bo = pool.SimpleConnectionPool(
+    DB_POOL_MIN_CONN,
+    DB_POOL_MAX_CONN,
+    host=DB_HOST,
+    port=DB_PORT,
+    database=DB_NAME_BO,
+    user=DB_USER,
+    password=DB_PASSWORD
+)
+db_pool_s = pool.SimpleConnectionPool(
+    DB_POOL_MIN_CONN,
+    DB_POOL_MAX_CONN,
+    host=DB_HOST,
+    port=DB_PORT,
+    database=DB_NAME_S,
     user=DB_USER,
     password=DB_PASSWORD
 )
@@ -585,6 +607,72 @@ async def get_profile_picture(username: str):
 
     # serve the image file to the frontend
     return FileResponse(file_location)
+
+@app.get("/prognose_bo/{id}")
+async def root(id:str):
+    conn = db_pool_bo.getconn()
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM prognose WHERE stat_id = '{id}';")
+    data = cursor.fetchall()
+
+    conn.close()
+
+    # Prepare the data in the desired format
+    formatted_data = []
+    for row in data:
+        zeit = row[4]  # Assuming the timestamp is in the 5th column (index 4) of your database table
+        windrichtung = row[1]  # Assuming the wind direction is in the 2nd column (index 1)
+        windgeschwindigkeit = row[2]  # Assuming the wind speed is in the 3rd column (index 2)
+        boehen = row[3]  # Assuming the gusts are in the 4th column (index 3)
+
+        formatted_row = {
+            'zeit': zeit,
+            'windrichtung': windrichtung,
+            'boehen': boehen,
+            'windgeschwindigkeit': windgeschwindigkeit
+        }
+        formatted_data.append(formatted_row)
+
+    return formatted_data
+
+    # conn = db_pool_bo.getconn()
+    # cursor = conn.cursor()
+    # cursor.execute(f"SELECT * FROM prognose WHERE stat_id = '{id}';")
+    # data = cursor.fetchall()
+
+    # conn.close()
+
+    # return data
+
+@app.get("/prognose_s/{id}")
+async def root(id: str):
+    conn = db_pool_s.getconn()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(f"SELECT * FROM prognose WHERE stat_id = '{id}';")
+        data = cursor.fetchall()
+
+        # Prepare the data in the desired format
+        formatted_data = []
+        for row in data:
+            zeit = row[4]  # Assuming the timestamp is in the 5th column (index 4) of your database table
+            windrichtung = row[1]  # Assuming the wind direction is in the 2nd column (index 1)
+            windgeschwindigkeit = row[2]  # Assuming the wind speed is in the 3rd column (index 2)
+            boehen = row[3]  # Assuming the gusts are in the 4th column (index 3)
+
+            formatted_row = {
+                'zeit': zeit,
+                'windrichtung': windrichtung,
+                'boehen': boehen,
+                'windgeschwindigkeit': windgeschwindigkeit
+            }
+            formatted_data.append(formatted_row)
+
+        return formatted_data
+    finally:
+        conn.close()
+
+
 
 
 if __name__ == "__main__":

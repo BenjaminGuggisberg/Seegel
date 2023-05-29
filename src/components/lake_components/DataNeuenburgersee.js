@@ -58,7 +58,7 @@ function DataNeuenburgersee(props) {
           Wasserpegel
         </button>
         <button className="wind-button" onClick={WindViewer}>
-          Wind-Vorhersage
+          Weitere Daten
         </button>
         <div className="swipe"></div>
       </div>
@@ -106,7 +106,9 @@ function DataNeuenburgersee(props) {
         </div>
       </>
       ) : (<>
-        <p>This is an example for the Wind Forecast</p>
+        <div style={{textAlign: 'center'}}>
+          <p>Weitere Daten: Beispiel Wind-Chart</p>
+        </div>
         <ResponsiveContainer width='80%' height={300}>
           <AreaChart
             width={730}

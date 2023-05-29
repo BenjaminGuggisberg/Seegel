@@ -46,9 +46,9 @@ const RegisterForm = (props) => {
           src="Sailing.png"
           alt="Segelschiff-Icon"
           />
-      <form className='form' onSubmit={handleSubmit}>
-      {message && <div style={{textAlign: 'center'}}><p style={{color: 'green'}}>Welcome {username}! You have successfully registered for Seegel.</p>
-            <p>Go "Back" to Login for Seegel :D</p></div>}
+      <form className='form' style={{width: '80%'}} onSubmit={handleSubmit}>
+      {message && <div style={{textAlign: 'center'}}><p style={{fontSize: 'medium'}}>Willkommen {username}!</p>
+            <p style={{color: 'green', fontSize: 'small'}}>Registrierung erfolgreich! <br/> 'Zurück' zum Login</p></div>}
         <div>
           <label>
             Email:

@@ -61,7 +61,7 @@ function Login(props) {
           src="Sailing.png"
           alt="Segelschiff-Icon"
           />
-          <form className='form' onSubmit={handleSubmit}>
+          <form className='form' onSubmit={handleSubmit} style={{width: '80%'}}>
           {errorMessage && <div style={{color: 'red'}} className="error">{errorMessage}<br/><br/></div>}
             <div>
               <label>

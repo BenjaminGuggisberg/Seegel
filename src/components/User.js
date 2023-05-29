@@ -69,8 +69,9 @@ function User(props) {
             });
 
         setIsMenuOpen(false);
-        window.location.reload();
-
+        setTimeout(() => {
+            window.location.reload();
+        }, 300);
     };
 
     // function getHashedUsername(username) {
@@ -278,14 +279,35 @@ function User(props) {
                                         <div id='imshow' style={{ textAlign: 'center', position: 'relative' }}>
                                             <img src={props.profilePictureUrl} alt="Profile Picture" style={{ width: '250px', height: '250px', objectFit: 'cover', padding: '25px' }} />
                                             <button style={{ position: "absolute", top: 0, right: 0, cursor: "pointer", border: "none", background: "none", color: "black", fontSize: "medium" }} onClick={() => setShowProfilePicture(false)}>X</button>
-                                            <div id='div2' style={{ position: 'absolute', marginBottom: '3%', left: '46%', transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                {isDelete ? (<>
-                                                    <img src="/delete.png" alt="Delete" style={{ height: '15px', cursor: 'pointer', marginBottom: '35px' }} className="menu-item" onClick={handleDeleteImage} />
-                                                </>
-                                                ):(
-                                                <>
-                                                <button onClick={() => setisDelete(true)} style={{background: 'none', border: '1px solid black', borderRadius: '50px', padding: '6px', marginBottom: '10%'}}>Bild löschen </button>
-                                                </>)}
+                                            <div id='div2' style={{ position: 'absolute', left: '46%', transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                                                <div style={{ display: 'flex', alignItems: 'center', marginTop: '18px' }}>
+                                                    <div id="div2" style={{ position: 'absolute', marginBottom: '3%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                        <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
+                                                            <p style={{ margin: 0, marginRight: '10px', whiteSpace: 'nowrap' }}>Bild löschen:</p>
+                                                            <img
+                                                                src="/delete.png"
+                                                                alt="Delete"
+                                                                style={{
+                                                                    width: '20px',
+                                                                    height: '20px',
+                                                                    padding: '2px',
+                                                                    border: '2px solid black',
+                                                                    borderRadius: '50%',
+                                                                    cursor: 'pointer',
+                                                                    marginBottom: '0',
+                                                                    background: 'transparent',
+                                                                    verticalAlign: 'middle',
+                                                                }}
+                                                                className="menu-item"
+                                                                onClick={handleDeleteImage}
+                                                            />
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -301,9 +323,9 @@ function User(props) {
                                                 <label
                                                     htmlFor="fileInput"
                                                     className="custom-file-input"
-                                                    style={{border: '1px solid black', borderRadius: '50px', padding: '12px', background: 'transparent'}}
+                                                    style={{ border: '1px solid black', borderRadius: '50px', padding: '12px', background: 'transparent', fontSize: 'medium' }}
                                                 >
-                                                    Bild ändern
+                                                    Bild aus Gallerie auswählen
                                                 </label>
                                             </>
                                         ) : (
@@ -311,7 +333,7 @@ function User(props) {
                                                 <button
                                                     className="menu-item"
                                                     onClick={handleAddImage}
-                                                    style={{border: '1px solid black', borderRadius: '50px', padding: '12px', background: 'transparent'}}
+                                                    style={{ border: '1px solid black', borderRadius: '50px', padding: '12px', background: 'transparent', fontSize: 'medium' }}
                                                 >
                                                     Bild hochladen
                                                 </button>
@@ -354,73 +376,18 @@ function User(props) {
                             <div>
                                 <hr style={{ borderTop: '2px solid lightblue', width: '80%', marginTop: '5%', marginBottom: '4%' }} />
                             </div>
-
                         </>
                     ) : (
-                        <>
-                            <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <img src="/example_icon.png" alt="Basic Icon" style={{ height: '100px' }} />
-                                <p>Click to change Picture</p>
-                            </div><br />
-                            <div className="menu">
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    {isMenuOpen ? (<>
-                                        <div style={{ position: 'relative', justifyContent: 'center', alignItems: 'center' }}>
-                                            <div style={{ position: 'relative', marginBottom: '1rem' }}>
-                                                <label
-                                                    htmlFor="fileInput"
-                                                    className="custom-file-input"
-                                                    style={{
-                                                        background: 'transparent',
-                                                        borderRadius: '50px',
-                                                        border: '1px solid black',
-                                                        color: 'black',
-                                                        cursor: 'pointer',
-                                                        display: 'inline-block',
-                                                        fontFamily: 'Rubik, sans-serif',
-                                                        fontSize: 'inherit',
-                                                        fontWeight: 500,
-                                                        outline: 'none',
-                                                        padding: '1rem 50px',
-                                                        position: 'relative',
-                                                        transition: 'all 0.3s',
-                                                        verticalAlign: 'middle',
-                                                    }}
-                                                >
-                                                    Choose File
-                                                </label>
-                                                <input
-                                                    type="file"
-                                                    id="fileInput"
-                                                    accept="image/*"
-                                                    onChange={(event) => setProfilePicture(event.target.files[0])}
-                                                    required
-                                                    style={{
-                                                        display: 'none', // Hide the default file input appearance
-                                                    }}
-                                                />
-                                            </div>
-
-                                            <div id='div2' style={{ position: 'absolute', marginTop: '5%', left: '50%', transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                <button className="menu-item" onClick={handleAddImage} style={{ border: 'none', background: 'transparent', fontSize: 'larger', cursor: 'pointer' }}></button>
-                                                <div style={{ width: '20px' }}></div>
-                                                <img src="/delete.png" alt="Delete" style={{ height: '12px', cursor: 'pointer' }} className="menu-item" onClick={handleDeleteImage} />
-                                            </div>
-                                        </div>
-                                    </>) : (null)}
-                                </div>
-                            </div>
-                            <br /><br /><br />
-                        </>
-                    )}
+                        null
+                        )}
                 </div>
             </div>
         </div>
         {isPush ? (
             <>
                 <div id='push' style={{ display: "flex", justifyContent: "center", position: 'relative', border: '5px solid lightblue', borderRadius: '5px' }}>
-                    <h4>Push-Settings</h4><button style={{ position: "absolute", top: 15, right: 15, cursor: "pointer", border: "none", background: "none", color: "black", fontSize: "medium" }} onClick={() => setIsPush(false)}>X</button>
-                    <p style={{ fontStyle: "italic", fontSize: "smaller" }}>(Activate notification to know if waterlevel or wind forecast exceeds thresholds) </p><br />
+                    <h4>Push-Einstellungen </h4><button style={{ position: "absolute", top: 15, right: 15, cursor: "pointer", border: "none", background: "none", color: "black", fontSize: "medium" }} onClick={() => setIsPush(false)}>X</button>
+                    <p style={{ fontStyle: "italic", fontSize: "smaller" }}>(Aktiviere Benachrichtigungen um über die vorherrschende Gefahrenstufe informiert zu werden) </p><br />
                     <label className="push-label">
                         Thunersee
                         <input
@@ -461,7 +428,7 @@ function User(props) {
             </>
         ) : (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <button style={{ marginTop: '0px', background: 'transparent', border: '1px solid black', borderRadius: '50px', height: '10%', padding: '12px', fontSize: 'medium', fontFamily: 'Lucida Sans' }} onClick={handleOpenPushSettings}>Open Push-Settings</button>
+                <button style={{ marginTop: '0%', padding: '10px', background: 'transparent', color: 'black', border: 'none', borderBottom: '2px solid lightblue', fontSize: '16px', cursor: 'pointer', transition: 'all 0.3s ease-in-out', position:'realtive', fontFamily: 'Lucida Sans' }} onClick={handleOpenPushSettings}>Push-Einstellungen öffnen</button>
             </div>
         )}
         <br /><br />
@@ -478,6 +445,7 @@ function User(props) {
                     left: 0,
                     width: '100%',
                     height: '100%',
+                    padding: 'auto',
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     display: 'flex',
                     justifyContent: 'center',
@@ -488,11 +456,12 @@ function User(props) {
                         backgroundColor: '#fff',
                         padding: 20,
                         borderRadius: 5,
+                        width: '80%'
                     }}>
                         <div style={{ textAlign: 'center' }}>
                             <h3>&#9940; Bestätigung &#9940;</h3>
                             <p>Möchtest du deinen Account wirklich löschen?</p>
-                            <p>Diese Aktion kann nicht rückgänging gemacht werden!</p>
+                            <p style={{ fontSize: 'x-small' }}>Diese Aktion kann nicht rückgänging gemacht werden!</p>
                             <button style={{ marginTop: '0px', background: 'transparent', border: '1px solid black', borderRadius: '50px', height: '2%', padding: '4px', fontSize: 'small', fontFamily: 'Lucida Sans', marginRight: '5px' }} onClick={handleConfirm}>Bestätigen</button>
                             <button style={{ marginTop: '0px', background: 'transparent', border: '1px solid black', borderRadius: '50px', height: '2%', padding: '4px', fontSize: 'small', fontFamily: 'Lucida Sans', marginLeft: '5px' }} onClick={handleCancel}>Abbrechen</button>
                         </div>

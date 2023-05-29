@@ -20,7 +20,7 @@ button[type="footer"] {
   background-color: transparent;
   color: #333;
   border: 1px solid transparent;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 50px;
   font-size: 18px;
   transition: all 0.3s ease;
@@ -47,7 +47,7 @@ button[type="logout"]:hover {
 }
 
 
-footer button:hover {
+button[type='footer']:hover {
   transform: translateY(-3px);
   background-color: rgb(63, 61, 61);
   color: #fff;

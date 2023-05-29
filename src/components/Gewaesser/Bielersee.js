@@ -7,11 +7,14 @@ import '../css/Footer.css'
 import DataWindow from '../lake_components/datawindow_bielersee';
 import OLmap from '../OLmap';
 import TifLayer from '../tiflayer';
+// import MapComponent from '../Map';
 
 
 function Page1(props) {
   const center = [2579487.0988, 1214651.8038];
-  const zoom = 12;
+  const zoom = 11;
+  const layer = 'messstationen_s';
+  const prognose = 'prognose_s';
   const component01 = 'sail:bielersee_border';
   const component02 = 'sail:bielersee_float64';
   const url = './bathimetry_tif/zusammengefuehrt_bielersee.tif';
@@ -113,7 +116,7 @@ function Page1(props) {
     <div style={{ marginTop: '42%' }}>
     </div>
     {/* <OLmap id='map' className='map' center={center} zoom={zoom} onClick={handleMapClick}> */}
-    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBielersee renderTableRows={renderTableRows} showMap={showMap} />}
+    {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} layer={layer} prognose={prognose} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataBielersee renderTableRows={renderTableRows} showMap={showMap} />}
     <div style={{textAlign: 'center'}}>
     <br/>
     {showMap ? (<>

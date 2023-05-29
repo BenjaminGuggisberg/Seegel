@@ -8,6 +8,8 @@ import DataWindow from '../lake_components/datawindow_thunersee'
 function Page3(props) {
   const center = [2620575.305, 1171579.4879];
   const zoom = 12;
+  const layer = 'messstationen_bo';
+  const prognose = 'prognose_bo';
   const component01 = ''; // Add Layer 1
   const component02 = ''; // Add Layer 2
   const url = './bathimetry_tif/zusammengefuehrt_thunersee.tif';
@@ -113,7 +115,7 @@ function Page3(props) {
     <div style={{ marginTop: '42%' }}>
     </div>
     <div className='map-container' > {/* style={{height: showDataWindow ? 'calc(100vh - 300px)' : 'calc(100vh - 50px)'}} */}
-      {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataThunersee renderTableRows={renderTableRows} showMap={showMap} />}
+      {showMap ? <OLmap id='map' className='map' center={center} zoom={zoom} layer={layer} prognose={prognose} component01={component01} component02={component02} url={url} onChildClick={props.onChildClick} actuallevel={actuallevel}/> : <DataThunersee renderTableRows={renderTableRows} showMap={showMap} />}
       {/* {showDataWindow ? (<>
         <DataWindow onClose={handleCloseDataWindow} /></>
       ) : (

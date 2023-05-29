@@ -1,6 +1,6 @@
 .datawindow {
-    background-color: lightblue;
-    border: 1px solid black;
+    background-color: whitesmoke;
+    border: 1px solid lightblue;
     height: 80px;
     position: relative;
     width: 80%;
@@ -12,3 +12,23 @@
     text-align: center;
     align-items: center;
 }
+
+.datawindow2 {
+    background-color: whitesmoke;
+    border: 1px solid lightblue;
+    height: 290px;
+    position: relative;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    font-family: "Lucida Sans";
+    font-size: medium;
+    text-align: center;
+    align-items: center;
+}
+
+.chart-container {
+    margin: 2px;
+  }
+  

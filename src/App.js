@@ -208,7 +208,7 @@ function App() {
     } else if (currentPage === 'menu') {
       setNameTag('') // setNameTag('Main Menu')
     } else if (currentPage === 'user') {
-      setNameTag('User Settings')
+      setNameTag('Benutzer Einstellungen')
     }
   };
 
@@ -250,7 +250,7 @@ function App() {
                       </ul> */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '40%', height: '750px' }}>
                         <div style={{ display: 'flex', width: 'inherit', justifyContent: 'center', marginRight: '30px'}}>
-                          <input type='text' placeholder='  Wo möchtest du segeln? &#9973;' value={searchTerm} onChange={handleSearch} style={{ width: '230px', height: '25px' }} />
+                          <input type='text' placeholder='      &#9973; Seegel-Sucher &#9973;' value={searchTerm} onChange={handleSearch} style={{ width: '230px', height: '25px' }} />
                           {searchTerm && (
                             <button onClick={() => setSearchTerm('')} style={{ alignSelf: 'flex-end', marginBottom: '18px', marginLeft: '10px', border: 'none', background: 'transparent', width: '0px' }}>
                               X
@@ -304,7 +304,7 @@ function App() {
                   marginTop: '40%',
                   fontSize: '250%',
                   fontFamily: 'Lucida Sans'
-                }}>Loading ...</p>
+                }}>Loading Seegel ...</p>
                 <div>
                   <img
                     src="Sailing_contur.png"
