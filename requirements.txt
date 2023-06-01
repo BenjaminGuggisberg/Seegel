@@ -1,0 +1,12 @@
+collections
+fastapi
+hashlib
+json
+os
+pandas
+psycopg2
+pydantic
+pyproj
+rasterio
+requests
+uvicorn

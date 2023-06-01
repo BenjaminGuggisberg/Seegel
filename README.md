@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Seegel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Server Client Projekt im Rahmen des Vertiefunsprofiles Geoinformatik und Datenanalyse (Modul 4230) des Institustes Geomatik an der FHNW Muttenz. 
 
-## Available Scripts
+- **Frontend:** React.js, OpenLayers und CSS
+- **Backend:** FastAPI, PostgreSQL
 
-In the project directory, you can run:
+## Requirements
+- [Git](https://git-scm.com/)
+- IDE wie [Visual Studio Code](https://code.visualstudio.com/) 
+- [Anaconda Distribution](https://www.anaconda.com/products/distribution) oder [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+- Node.js und npm ([https://docs.npmjs.com/downloading-and-installing-node-js-and-npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
+  
+## Git Projekt mit Visual Studio Code lokal klonen
+Öffne ein neues Visual Studio Code Fenster und wähle unter Start *Clone Git Repository*. Alternativ öffne die Command Palette in VS Code `CTRL+Shift+P` (*View / Command Palette*) und wähle `Git: clone`. 
+Füge die Git web URL `https://github.com/314a/GDI_Project.git` ein und bestätige die Eingabe mit Enter. Wähle einen Ordner in welchen das Repository *geklont* werden soll.
 
-### `npm start`
+## Frontend installieren
+Öffne ein Terminal (Command Prompt in VS Code) und installiere npm für dieses Projekt
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+``` shell
+# aktiviere node.js (falls nvm genutzt wird) 
+# nvm use 16.19.1 
+# install all the node.js dependencies
+npm install
+# node Projekt ausführen
+# npm start ist in package.json definiert
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend installieren
+Öffne ein Terminal und wechsle in den *loginserver* Ordner.
+1. Virtuelle Umgebung für Python mit allen Requirements in der `requirements.txt` Datei aufsetzen.
 
-### `npm test`
+```shell
+# Requirements
+cd loginserver
+# Füge conda-forge als Channel in conda hinzu, da sonst nicht alle Pakete installiert werden können
+conda config --add channels conda-forge
+# Erstelle ein neues Conda Environment und füge die Python Packges requirements.txt hinzu, requirements.txt befindet sich im Ordner loginserver
+conda create --name seegel python=3.9.16 --file requirements.txt
+```
+2. Aufsetzen einer loklaen PostgreSQL Datenbank:
+   Besuche die offizielle PostgreSQL-Website unter https://www.postgresql.org/ und lade dir die Version PostgreSQL 15 herunter.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   Tipp: fürs Entwickeln oder Ansehen von Daten kann PGAdmin ein wertvolles Tool sein. PGAdmin kann unter https://www.pgadmin.org/ bezogen werden.
 
-### `npm run build`
+3. Backend ausführen, virtuelle Umgebung starten und server *uvicorn* starten. Öffne http://localhost:8000/api/docs im Browser und verifiziere, ob das Backend läuft.
+``` shell
+# navigiere zum loginserver Ordner im Verzeichnis
+cd loginserver
+# aktiviere die conda Umgebung seegel
+conda activate seegel
+# start server auf localhost aus dem Ordner "server"
+uvicorn server:app --reload
+# Öffne die angegebene URL im Browser und verifiziere, ob das Backend läuft.
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API Dokumentation
+Fast API kommt mit vorinstallierter Swagger UI. Wenn der Fast API Backend Server läuft, ist die Dokumentation der API über Swagger UI auf http://localhost:8000/api/docs verfügbar.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+***Achtung:***
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*/api* ist nicht Standard, dies wurde hinzugefügt um die API später auf einem öffentlich zugänglichen Server laufen lassen zu können.
