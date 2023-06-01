@@ -1,6 +1,6 @@
 # Seegel
 
-Server Client Projekt im Rahmen des Vertiefunsprofiles Geoinformatik und Datenanalyse (Modul 4230) des Institustes Geomatik an der FHNW Muttenz. 
+Server Client Projekt im Rahmen des Vertiefunsprofiles Geoinformatik und Raumanalyse (Modul 4230) des Institutes Geomatik an der FHNW Muttenz. 
 
 - **Frontend:** React.js, OpenLayers und CSS
 - **Backend:** FastAPI, PostgreSQL
