@@ -46,7 +46,7 @@ conda create --name seegel python=3.9.16 --file requirements.txt
    Tipp: fürs Entwickeln oder Ansehen von Daten kann PGAdmin ein wertvolles Tool sein. PGAdmin kann unter https://www.pgadmin.org/ bezogen werden.
 
 3. Zum Berechnen der Seetiefen müssen die Bathymetriedaten heruntergeladen, entzippt und im Ordner bathimetry_tif abgelegt werden.
-   Die gezippten tif-Files der Seen sind unter folgenden URLs erreichbar:
+   Die gezippten tif-Files der Seen können unter folgenden URLs heruntergeladen werden:
    - https://vm12.sourcelab.ch/zip_files/neuenburgersee_float64.zip
    - https://vm12.sourcelab.ch/zip_files/zusammengefuehrt_bielersee.zip
    - https://vm12.sourcelab.ch/zip_files/zusammengefuehrt_brienzersee.zip
