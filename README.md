@@ -45,7 +45,14 @@ conda create --name seegel python=3.9.16 --file requirements.txt
 
    Tipp: fürs Entwickeln oder Ansehen von Daten kann PGAdmin ein wertvolles Tool sein. PGAdmin kann unter https://www.pgadmin.org/ bezogen werden.
 
-3. Backend ausführen, virtuelle Umgebung starten und server *uvicorn* starten. Öffne http://localhost:8000/api/docs im Browser und verifiziere, ob das Backend läuft.
+3. Zum Berechnen der Seetiefen müssen die Bathymetriedaten heruntergeladen, entzippt und im Ordner bathimetry_tif abgelegt werden.
+   Die gezippten tif-Files der Seen sind unter folgenden URLs erreichbar:
+   - https://vm12.sourcelab.ch/zip_files/neuenburgersee_float64.zip
+   - https://vm12.sourcelab.ch/zip_files/zusammengefuehrt_bielersee.zip
+   - https://vm12.sourcelab.ch/zip_files/zusammengefuehrt_brienzersee.zip
+   - https://vm12.sourcelab.ch/zip_files/zusammengefuehrt_thunersee.zip
+
+4. Backend ausführen, virtuelle Umgebung starten und server *uvicorn* starten. Öffne http://localhost:8000/api/docs im Browser und verifiziere, ob das Backend läuft.
 ``` shell
 # navigiere zum loginserver Ordner im Verzeichnis
 cd loginserver
